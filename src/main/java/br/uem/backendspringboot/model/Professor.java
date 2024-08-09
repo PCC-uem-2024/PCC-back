@@ -21,6 +21,6 @@ public class Professor {
     private Set<MembroInterno> defesaInterno;
 
     @OneToMany(mappedBy = "professor")
-    private Set<SuplementeInterno> suplenteInterno;
+    private Set<SuplenteInterno> suplenteInterno;
 
 }

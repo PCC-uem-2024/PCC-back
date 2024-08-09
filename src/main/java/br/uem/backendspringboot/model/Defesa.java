@@ -33,7 +33,7 @@ public class Defesa {
     @OneToMany(mappedBy = "defesa")
     private Set<MembroInterno> membrosInternos;
     @OneToMany(mappedBy = "defesa")
-    private Set<SuplementeInterno> suplentesInternos;
+    private Set<SuplenteInterno> suplentesInternos;
     @ManyToMany
     @JoinTable(
             name = "defesa_membro_externo",

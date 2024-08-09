@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-public class SuplementeInterno {
+public class SuplenteInterno {
 
     @EmbeddedId
     private DefesaInterna id;
