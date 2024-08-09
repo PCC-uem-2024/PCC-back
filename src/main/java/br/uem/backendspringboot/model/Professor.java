@@ -16,12 +16,11 @@ public class Professor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Boolean copiaImpresa;
 
-    @ManyToMany(mappedBy = "membrosInternos")
-    private Set<Defesa> defesaInterno;
+    @OneToMany(mappedBy = "professor")
+    private Set<MembroInterno> defesaInterno;
 
-    @ManyToMany(mappedBy = "suplentesInternos")
-    private Set<Defesa> suplenteInterno;
+    @OneToMany(mappedBy = "professor")
+    private Set<SuplementeInterno> suplenteInterno;
 
 }

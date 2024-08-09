@@ -21,7 +21,8 @@ public class Anexo {
     private String nome;
     private TipoAnexo tipo;
 
-    @ManyToMany(mappedBy = "anexos")
-    private Set<Defesa> defesas;
+    @ManyToOne
+    @JoinColumn(name = "defesa_id", nullable = false)
+    private Defesa defesa;
 
 }

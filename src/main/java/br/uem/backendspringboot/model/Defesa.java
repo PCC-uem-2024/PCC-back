@@ -28,20 +28,12 @@ public class Defesa {
     private String localFisico;
     private String linkMeet;
     private TipoDefesa tipo;
-    @ManyToMany
-    @JoinTable(
-            name = "defesa_anexo",
-            joinColumns = @JoinColumn(name = "defesa_id"),
-            inverseJoinColumns = @JoinColumn(name = "anexo_id")
-    )
+    @OneToMany(mappedBy = "defesa")
     private Set<Anexo> anexos;
-    @ManyToMany
-    @JoinTable(
-            name = "defesa_membro_interno",
-            joinColumns = @JoinColumn(name = "defesa_id"),
-            inverseJoinColumns = @JoinColumn(name = "membro_interno_id")
-    )
-    private Set<Professor> membrosInternos;
+    @OneToMany(mappedBy = "defesa")
+    private Set<MembroInterno> membrosInternos;
+    @OneToMany(mappedBy = "defesa")
+    private Set<SuplementeInterno> suplentesInternos;
     @ManyToMany
     @JoinTable(
             name = "defesa_membro_externo",
@@ -49,13 +41,6 @@ public class Defesa {
             inverseJoinColumns = @JoinColumn(name = "membro_externo_id")
     )
     private Set<Externo> membrosExternos;
-    @ManyToMany
-    @JoinTable(
-            name = "defesa_suplente_interno",
-            joinColumns = @JoinColumn(name = "defesa_id"),
-            inverseJoinColumns = @JoinColumn(name = "suplente_interno_id")
-    )
-    private Set<Professor> suplentesInternos;
     @ManyToMany
     @JoinTable(
             name = "defesa_suplente_externo",
