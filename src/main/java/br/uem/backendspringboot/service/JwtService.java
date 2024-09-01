@@ -1,10 +1,12 @@
 package br.uem.backendspringboot.service;
 
 import br.uem.backendspringboot.model.Usuario;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -18,11 +20,16 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
+    private static final Logger logger = LoggerFactory.getLogger(JwtService.class);
+
     @Value("${security.jwt.secret-key}")
     private String secretKey;
 
     @Value("${security.jwt.expiration-time}")
     private long jwtExpiration;
+
+    @Value("${security.jwt-refresh.expiration-time}")
+    private long jwtRefreshExpiration;
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -37,12 +44,16 @@ public class JwtService {
         return generateToken(new HashMap<>(), usuario);
     }
 
+    public String generateRefreshToken(Usuario usuario) {
+        return generateRefreshToken(new HashMap<>(), usuario);
+    }
+
     public String generateToken(Map<String, Object> extraClaims, Usuario usuario) {
         return buildToken(extraClaims, usuario, jwtExpiration);
     }
 
-    public long getExpirationTime() {
-        return jwtExpiration;
+    public String generateRefreshToken(Map<String, Object> extraClaims, Usuario usuario) {
+        return buildToken(extraClaims, usuario, jwtRefreshExpiration);
     }
 
     private String buildToken(
@@ -66,7 +77,7 @@ public class JwtService {
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
-    private boolean isTokenExpired(String token) {
+    public boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 

@@ -1,13 +1,12 @@
 package br.uem.backendspringboot.dto;
 
-import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Builder
-public class LoginResponseDto {
+@NoArgsConstructor
+public class RefreshDto {
     private String token;
-    private String refreshToken;
 }

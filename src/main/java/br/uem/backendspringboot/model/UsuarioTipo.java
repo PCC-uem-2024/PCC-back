@@ -14,7 +14,7 @@ import org.springframework.security.core.GrantedAuthority;
 public class UsuarioTipo implements GrantedAuthority {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usuario_tipo_id")
     private Long id;
     private String nome;
