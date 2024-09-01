@@ -23,4 +23,8 @@ public class Professor {
     @OneToMany(mappedBy = "professor")
     private Set<SuplenteInterno> suplenteInterno;
 
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
 }

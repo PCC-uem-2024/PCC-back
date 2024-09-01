@@ -28,5 +28,7 @@ public class Aluno {
     @JoinColumn(name = "coorientador2_id")
     private Professor coorientador2;
 
-
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 }
