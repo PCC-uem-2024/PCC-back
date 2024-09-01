@@ -17,6 +17,7 @@ public class Anexo {
     private Long id;
     private Double tamanho;
     private String nome;
+    @Enumerated(EnumType.STRING)
     private TipoAnexo tipo;
 
     @ManyToOne

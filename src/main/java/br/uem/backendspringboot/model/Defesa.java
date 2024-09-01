@@ -7,8 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Getter
@@ -21,9 +20,8 @@ public class Defesa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
-    private LocalDate data;
-    private LocalTime hora;
-    @Enumerated(EnumType.ORDINAL)
+    private LocalDateTime data;
+    @Enumerated(EnumType.STRING)
     private Modo modo;
     private String localFisico;
     private String linkMeet;
