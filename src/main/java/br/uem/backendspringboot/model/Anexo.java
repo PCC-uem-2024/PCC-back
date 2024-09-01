@@ -19,6 +19,7 @@ public class Anexo {
     private String nome;
     @Enumerated(EnumType.STRING)
     private TipoAnexo tipo;
+    private Boolean externo;
 
     @ManyToOne
     @JoinColumn(name = "defesa_id", nullable = false)

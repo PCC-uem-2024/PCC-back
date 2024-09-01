@@ -7,9 +7,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum TipoAnexo {
     TRABALHO("Texto do Trabalho"),
-    LATTESEXTERNO("Currículo Lattes de Membro Externo"),
+    LATTES("Currículo Lattes"),
     PUBLICACAO("Comprovante de Publicação"),
-    MEMBROESTRANGEIRO("Currículo de Membro Estrangeiro"),
+    MEMBROES("Currículo de Membro"),
     OUTROS("Outros");
 
     private String anexo;
