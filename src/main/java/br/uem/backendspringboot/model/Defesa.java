@@ -33,20 +33,10 @@ public class Defesa {
     @OneToMany(mappedBy = "defesa")
     private Set<MembroInterno> membrosInternos;
     @OneToMany(mappedBy = "defesa")
+    private Set<MembroExterno> membrosExternos;
+    @OneToMany(mappedBy = "defesa")
     private Set<SuplenteInterno> suplentesInternos;
-    @ManyToMany
-    @JoinTable(
-            name = "defesa_membro_externo",
-            joinColumns = @JoinColumn(name = "defesa_id"),
-            inverseJoinColumns = @JoinColumn(name = "membro_externo_id")
-    )
-    private Set<Externo> membrosExternos;
-    @ManyToMany
-    @JoinTable(
-            name = "defesa_suplente_externo",
-            joinColumns = @JoinColumn(name = "defesa_id"),
-            inverseJoinColumns = @JoinColumn(name = "suplente_externo_id")
-    )
-    private Set<Externo> suplentesExternos;
+    @OneToMany(mappedBy = "defesa")
+    private Set<SuplenteExterno> suplentesExternos;
 
 }

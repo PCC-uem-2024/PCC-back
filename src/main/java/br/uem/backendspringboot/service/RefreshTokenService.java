@@ -3,8 +3,8 @@ package br.uem.backendspringboot.service;
 import br.uem.backendspringboot.model.RefreshToken;
 import br.uem.backendspringboot.model.Usuario;
 import br.uem.backendspringboot.repository.RefreshTokenRepository;
-import br.uem.backendspringboot.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,16 +12,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class RefreshTokenService {
 
     @Autowired
     private RefreshTokenRepository refreshTokenRepository;
-
     @Autowired
     private JwtService jwtService;
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
 
     public Optional<RefreshToken> findByToken(String token) {
         return refreshTokenRepository.findByToken(token);

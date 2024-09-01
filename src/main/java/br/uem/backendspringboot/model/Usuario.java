@@ -1,13 +1,14 @@
 package br.uem.backendspringboot.model;
 
+import br.uem.backendspringboot.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -28,16 +29,14 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private String senha;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_tipo_id")
+    @ElementCollection
+    @Enumerated(EnumType.STRING)
     @ToString.Exclude
-    private UsuarioTipo usuarioTipo;
+    private Set<Role> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<UsuarioTipo> usuarioTipos = new ArrayList<>();
-        usuarioTipos.add(usuarioTipo);
-        return usuarioTipos;
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toSet());
     }
 
     @Override

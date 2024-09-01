@@ -6,6 +6,7 @@ import br.uem.backendspringboot.exception.NotFoundException;
 import br.uem.backendspringboot.model.Usuario;
 import br.uem.backendspringboot.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,10 +15,16 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
+
+    @Autowired
     private final UsuarioRepository usuarioRepository;
+    @Autowired
     private final UserDetailsService userDetailsService;
+    @Autowired
     private final AuthenticationManager authenticationManager;
+    @Autowired
     private final JwtService jwtService;
+    @Autowired
     private final RefreshTokenService refreshTokenService;
 
     public Usuario autenticar(LoginDto login) {

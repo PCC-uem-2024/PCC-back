@@ -22,9 +22,9 @@ public class Externo {
     private String instituicao;
     private String cpf;
 
-    @ManyToMany(mappedBy = "membrosExternos")
-    private Set<Defesa> defesaExterno;
+    @OneToMany(mappedBy = "professor")
+    private Set<MembroExterno> defesaInterno;
 
-    @ManyToMany(mappedBy = "suplentesExternos")
-    private Set<Defesa> suplenteExterno;
+    @OneToMany(mappedBy = "professor")
+    private Set<SuplenteExterno> suplenteInterno;
 }
