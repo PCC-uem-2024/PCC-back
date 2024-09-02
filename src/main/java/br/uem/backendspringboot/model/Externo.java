@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -23,8 +24,11 @@ public class Externo {
     private String cpf;
 
     @OneToMany(mappedBy = "professor")
-    private Set<MembroExterno> defesaInterno;
+    private Set<MembroExterno> defesaInterno = new HashSet<>();
 
     @OneToMany(mappedBy = "professor")
-    private Set<SuplenteExterno> suplenteInterno;
+    private Set<SuplenteExterno> suplenteInterno = new HashSet<>();
+
+    @OneToMany(mappedBy = "professor")
+    private Set<OrientadorExterno> orientacoes = new HashSet<>();
 }

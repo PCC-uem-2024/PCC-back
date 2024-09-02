@@ -29,13 +29,20 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private String senha;
 
+    /*
+    Tipos:
+        A - Aluno
+        S - Secretaria
+        P - Professor
+        U - Admin
+     */
     @Column(nullable = false)
     private char tipoUsuario;
 
     @ElementCollection
     @Enumerated(EnumType.STRING)
     @ToString.Exclude
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

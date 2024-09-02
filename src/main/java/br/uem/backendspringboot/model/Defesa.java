@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -27,14 +28,14 @@ public class Defesa {
     private String linkMeet;
     private TipoDefesa tipo;
     @OneToMany(mappedBy = "defesa")
-    private Set<Anexo> anexos;
+    private Set<Anexo> anexos = new HashSet<>();
     @OneToMany(mappedBy = "defesa")
-    private Set<MembroInterno> membrosInternos;
+    private Set<MembroInterno> membrosInternos = new HashSet<>();
     @OneToMany(mappedBy = "defesa")
-    private Set<MembroExterno> membrosExternos;
+    private Set<MembroExterno> membrosExternos = new HashSet<>();
     @OneToMany(mappedBy = "defesa")
-    private Set<SuplenteInterno> suplentesInternos;
+    private Set<SuplenteInterno> suplentesInternos = new HashSet<>();
     @OneToMany(mappedBy = "defesa")
-    private Set<SuplenteExterno> suplentesExternos;
+    private Set<SuplenteExterno> suplentesExternos = new HashSet<>();
 
 }

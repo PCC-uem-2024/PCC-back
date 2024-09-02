@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -18,15 +21,12 @@ public class Aluno {
     private String cpf;
     private String email;
     private LocalDate dataIngresso;
-    @ManyToOne
-    @JoinColumn(name = "orientador_id")
-    private Professor orientador;
-    @ManyToOne
-    @JoinColumn(name = "coorientador1_id")
-    private Professor coorientador1;
-    @ManyToOne
-    @JoinColumn(name = "coorientador2_id")
-    private Professor coorientador2;
+
+    @OneToMany(mappedBy = "aluno")
+    private Set<OrientadorInterno> orientadoresInterno = new HashSet<>();
+
+    @OneToMany(mappedBy = "aluno")
+    private Set<OrientadorExterno> orientadoresExterno = new HashSet<>();
 
     @OneToOne
     @JoinColumn(name = "usuario_id")

@@ -37,9 +37,8 @@ public class BackendSpringbootApplication {
                 Usuario usuario = new Usuario();
                 usuario.setEmail("master@uem.br");
                 usuario.setSenha(passwordEncoder.encode("123456"));
-                Set<Role> roles = new HashSet<>();
-                roles.add(Role.ROLE_SECRETARIA);
-                usuario.setRoles(roles);
+                usuario.getRoles().add(Role.ROLE_ADMIN);
+                usuario.setTipoUsuario('U');
                 repository.save(usuario);
             }
         };

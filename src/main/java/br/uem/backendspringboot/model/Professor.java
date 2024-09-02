@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -18,10 +19,13 @@ public class Professor {
     private Long id;
 
     @OneToMany(mappedBy = "professor")
-    private Set<MembroInterno> defesaInterno;
+    private Set<MembroInterno> defesaInterno = new HashSet<>();
 
     @OneToMany(mappedBy = "professor")
-    private Set<SuplenteInterno> suplenteInterno;
+    private Set<SuplenteInterno> suplenteInterno = new HashSet<>();
+
+    @OneToMany(mappedBy = "professor")
+    private Set<OrientadorInterno> orientacoes = new HashSet<>();
 
     @OneToOne
     @JoinColumn(name = "usuario_id")
