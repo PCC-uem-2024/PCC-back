@@ -33,9 +33,5 @@ public class Defesa {
     private Set<MembroInterno> membrosInternos = new HashSet<>();
     @OneToMany(mappedBy = "defesa")
     private Set<MembroExterno> membrosExternos = new HashSet<>();
-    @OneToMany(mappedBy = "defesa")
-    private Set<SuplenteInterno> suplentesInternos = new HashSet<>();
-    @OneToMany(mappedBy = "defesa")
-    private Set<SuplenteExterno> suplentesExternos = new HashSet<>();
 
 }

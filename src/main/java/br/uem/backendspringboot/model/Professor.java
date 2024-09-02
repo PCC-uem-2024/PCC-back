@@ -22,9 +22,6 @@ public class Professor {
     private Set<MembroInterno> defesaInterno = new HashSet<>();
 
     @OneToMany(mappedBy = "professor")
-    private Set<SuplenteInterno> suplenteInterno = new HashSet<>();
-
-    @OneToMany(mappedBy = "professor")
     private Set<OrientadorInterno> orientacoes = new HashSet<>();
 
     @OneToOne

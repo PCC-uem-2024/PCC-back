@@ -27,8 +27,5 @@ public class Externo {
     private Set<MembroExterno> defesaInterno = new HashSet<>();
 
     @OneToMany(mappedBy = "professor")
-    private Set<SuplenteExterno> suplenteInterno = new HashSet<>();
-
-    @OneToMany(mappedBy = "professor")
     private Set<OrientadorExterno> orientacoes = new HashSet<>();
 }

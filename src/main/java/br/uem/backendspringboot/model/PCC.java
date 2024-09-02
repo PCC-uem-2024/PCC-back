@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,4 +24,7 @@ public class PCC {
     private String endereco;
     @Enumerated(EnumType.ORDINAL)
     private TipoCurso tipoCurso;
+
+    @OneToMany
+    private Set<Professor> professores = new HashSet<>();
 }

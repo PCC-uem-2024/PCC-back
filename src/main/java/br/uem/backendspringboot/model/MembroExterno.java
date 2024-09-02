@@ -26,4 +26,6 @@ public class MembroExterno {
     private Defesa defesa;
 
     private Boolean copiaImpresa;
+
+    private Boolean suplente;
 }

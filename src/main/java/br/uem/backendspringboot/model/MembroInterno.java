@@ -27,4 +27,6 @@ public class MembroInterno {
 
     private Boolean copiaImpresa;
 
+    private Boolean suplente;
+
 }
