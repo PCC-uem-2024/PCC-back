@@ -31,9 +31,6 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private String senha;
 
-    @OneToMany(mappedBy = "usuario")
-    private Set<RefreshToken> tokens = new HashSet<>();
-
     /*
     Tipos:
         A - Aluno
