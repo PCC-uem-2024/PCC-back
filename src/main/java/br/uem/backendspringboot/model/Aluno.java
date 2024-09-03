@@ -1,11 +1,13 @@
 package br.uem.backendspringboot.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -17,7 +19,9 @@ public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
+    private String nomeCivil;
+    private String nomeSocial;
+    @CPF
     private String cpf;
     private String email;
     private LocalDate dataIngresso;
