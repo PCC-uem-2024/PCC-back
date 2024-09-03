@@ -30,6 +30,8 @@ public class AuthenticationController {
         return ResponseEntity.ok(LoginResponseDto.builder()
                 .token(jwtToken)
                 .refreshToken(jwtRefreshToken)
+                .email(authenticatedUser.getEmail())
+                .role(authenticatedUser.getRoles().toString())
                 .build());
     }
 
@@ -42,6 +44,8 @@ public class AuthenticationController {
         return ResponseEntity.ok(LoginResponseDto.builder()
                 .token(jwtToken)
                 .refreshToken(jwtRefreshToken)
+                .email(authenticatedUser.getEmail())
+                .role(authenticatedUser.getRoles().toString())
                 .build());
     };
 }
