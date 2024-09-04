@@ -19,17 +19,12 @@ public class UsuarioController {
 
     @PostMapping("/changePassword")
     public ResponseEntity<ResponseDto> changePassword(@RequestBody ChangePasswordDto changePasswordDto) {
-        Boolean matchPassword = usuarioService.matchPassword(changePasswordDto.getEmail(), changePasswordDto.getOldPassword());
-        if (matchPassword) {
-            Boolean changed = usuarioService.changePassword(changePasswordDto.getEmail(), changePasswordDto.getNewPassword());
-            if (changed) {
-                return ResponseEntity.ok(ResponseDto.builder().message("Senha alterada com sucesso!").build());
-            } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ResponseDto.builder()
-                                                            .message("Usuario e/ou senha incorreta!").build());
-            }
+        Boolean changed = usuarioService.changePassword(changePasswordDto);
+        if (changed) {
+            return ResponseEntity.ok(ResponseDto.builder().message("Senha alterada com sucesso!").build());
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ResponseDto.builder().message("Senha incorreta").build());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ResponseDto.builder()
+                                                        .message("Usuario e/ou senha incorreta!").build());
         }
     }
 }

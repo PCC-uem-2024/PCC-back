@@ -1,5 +1,6 @@
 package br.uem.backendspringboot.controller;
 
+import br.uem.backendspringboot.dto.NewAlunoDto;
 import br.uem.backendspringboot.model.Aluno;
 import br.uem.backendspringboot.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class AlunoController {
     private AlunoService alunoService;
 
     @PostMapping
-    public ResponseEntity<Aluno> create(@RequestBody Aluno aluno) {
+    public ResponseEntity<Aluno> create(@RequestBody NewAlunoDto aluno) {
         return ResponseEntity.ok(alunoService.save(aluno));
     }
 

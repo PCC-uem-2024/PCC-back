@@ -1,9 +1,15 @@
 package br.uem.backendspringboot.service;
 
+import br.uem.backendspringboot.dto.ChangePasswordDto;
+import br.uem.backendspringboot.dto.ResponseDto;
+import br.uem.backendspringboot.exception.BadRequestException;
+import br.uem.backendspringboot.exception.MismatchPasswordException;
 import br.uem.backendspringboot.model.Usuario;
 import br.uem.backendspringboot.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,15 +28,36 @@ public class UsuarioService {
         return usuarioRepository.findByEmail(email).filter(value -> passwordEncoder.matches(password, value.getSenha())).isPresent();
     }
 
-    public Boolean changePassword(String email, String password) {
-        Optional<Usuario> userOpt = usuarioRepository.findByEmail(email);
-        if (userOpt.isPresent()) {
-            Usuario user = userOpt.get();
-            user.setSenha(passwordEncoder.encode(password));
-            usuarioRepository.save(user);
-            return true;
+    public Boolean matchNewPassword(String newPassword, String confirmPassword) {
+        return newPassword.equals(confirmPassword);
+    }
+
+    public Boolean isNewPasswordEqualToOldPassword(String oldPassword, String newPassword) {
+        return oldPassword.equals(newPassword);
+    }
+
+    public Boolean changePassword(ChangePasswordDto changePasswordDto) {
+        Boolean matchPassword = matchPassword(changePasswordDto.getEmail(), changePasswordDto.getOldPassword());
+        if (isNewPasswordEqualToOldPassword(changePasswordDto.getOldPassword(), changePasswordDto.getNewPassword())) {
+            throw new MismatchPasswordException("Nova senha não pode ser igual a antiga.");
+        } else if (!matchNewPassword(changePasswordDto.getNewPassword(), changePasswordDto.getConfirNewPassword())) {
+            throw new MismatchPasswordException("A senha e a confirmação da senha são diferentes.");
+        } else if (matchPassword) {
+            Optional<Usuario> userOpt = usuarioRepository.findByEmail(changePasswordDto.getEmail());
+            if (userOpt.isPresent()) {
+                Usuario user = userOpt.get();
+                user.setSenha(passwordEncoder.encode(changePasswordDto.getNewPassword()));
+                usuarioRepository.save(user);
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            return false;
+            throw new BadRequestException("Senha incorreta");
         }
+    }
+
+    public Usuario create(Usuario usuario) {
+        return usuarioRepository.save(usuario);
     }
 }

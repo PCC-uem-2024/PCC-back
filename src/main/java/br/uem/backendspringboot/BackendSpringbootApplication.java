@@ -4,6 +4,7 @@ import br.uem.backendspringboot.model.Usuario;
 import br.uem.backendspringboot.model.enums.Role;
 import br.uem.backendspringboot.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,11 +14,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TimeZone;
 
 @SpringBootApplication
 public class BackendSpringbootApplication {
 
     public static void main(String[] args) {
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT+03:00"));
         SpringApplication.run(BackendSpringbootApplication.class, args);
     }
 

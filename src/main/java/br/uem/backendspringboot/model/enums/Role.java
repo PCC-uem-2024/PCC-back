@@ -10,7 +10,10 @@ public enum Role {
     ROLE_SECRETARIA("Secretaria"),
     ROLE_COORDENADOR("Coordenador"),
     ROLE_PROFESSOR("Professor"),
-    ROLE_ALUNO("Aluno");
+    ROLE_ALUNO("Aluno"),
+    ROLE_MESTRADO("Mestrado"),
+    ROLE_DOUTORADO("Doutorado"),
+    ROLE_ORIENTADOR("Orientador");
 
     private final String role;
 }

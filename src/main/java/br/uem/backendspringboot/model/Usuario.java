@@ -41,7 +41,7 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private char tipoUsuario;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     @ToString.Exclude
     private Set<Role> roles = new HashSet<>();
