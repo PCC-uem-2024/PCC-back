@@ -1,7 +1,6 @@
 package br.uem.backendspringboot.service;
 
 import br.uem.backendspringboot.dto.NewAlunoDto;
-import br.uem.backendspringboot.dto.ResponseDto;
 import br.uem.backendspringboot.exception.MismatchPasswordException;
 import br.uem.backendspringboot.model.Aluno;
 import br.uem.backendspringboot.model.Usuario;
@@ -9,11 +8,9 @@ import br.uem.backendspringboot.model.enums.Role;
 import br.uem.backendspringboot.repository.AlunoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +25,7 @@ public class AlunoService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Transactional(rollbackFor = Exception.class)
     public Aluno save(NewAlunoDto alunoDto) {
         if (!usuarioService.matchNewPassword(alunoDto.getPassword(), alunoDto.getConfirmPassword())) {
             throw new MismatchPasswordException("A senha e a confirmação da senha são diferentes.");
