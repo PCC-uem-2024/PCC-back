@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum TipoCurso {
     MESTRADO("Mestrado"),
-    DOUTORADO("DOutorado");
+    DOUTORADO("Doutorado");
 
     private String curso;
 }
