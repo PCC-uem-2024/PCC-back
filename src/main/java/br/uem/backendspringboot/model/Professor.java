@@ -1,11 +1,10 @@
 package br.uem.backendspringboot.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,6 +22,8 @@ public class Professor {
     private String email;
     @CPF
     private String cpf;
+    private String matricula;
+    private LocalDate dataIngresso;
 
     @OneToMany(mappedBy = "professor")
     private Set<MembroInterno> defesaInterno = new HashSet<>();
