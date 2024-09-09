@@ -32,7 +32,7 @@ public class AlunoController {
         return ResponseEntity.ok(alunoService.findById(id));
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Aluno> update(@PathVariable Long id, @RequestBody AlunoChangeRequestDto aluno) {
         return ResponseEntity.ok(alunoService.update(aluno, id));
     }
