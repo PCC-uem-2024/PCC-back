@@ -1,5 +1,6 @@
 package br.uem.backendspringboot.controller;
 
+import br.uem.backendspringboot.dto.request.AlunoChangeRequestDto;
 import br.uem.backendspringboot.dto.request.AlunoRequestDto;
 import br.uem.backendspringboot.model.Aluno;
 import br.uem.backendspringboot.service.AlunoService;
@@ -29,6 +30,11 @@ public class AlunoController {
     @GetMapping("/{id}")
     public ResponseEntity<Aluno> getById(@PathVariable Long id) {
         return ResponseEntity.ok(alunoService.findById(id));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Aluno> update(@PathVariable Long id, @RequestBody AlunoChangeRequestDto aluno) {
+        return ResponseEntity.ok(alunoService.update(aluno, id));
     }
 
     @GetMapping("/consulta_email")

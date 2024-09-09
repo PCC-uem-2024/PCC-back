@@ -27,6 +27,7 @@ public class Aluno {
     private String cpf;
     private String email;
     private LocalDate dataIngresso;
+    private String matricula;
 
     @OneToMany(mappedBy = "aluno")
     @Fetch(FetchMode.JOIN)

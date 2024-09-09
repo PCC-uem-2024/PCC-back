@@ -1,5 +1,6 @@
 package br.uem.backendspringboot.service;
 
+import br.uem.backendspringboot.dto.request.AlunoChangeRequestDto;
 import br.uem.backendspringboot.dto.request.AlunoRequestDto;
 import br.uem.backendspringboot.exception.MismatchPasswordException;
 import br.uem.backendspringboot.exception.NotFoundException;
@@ -49,7 +50,19 @@ public class AlunoService {
         aluno.setEmail(alunoDto.getEmail());
         aluno.setCpf(alunoDto.getCpf());
         aluno.setDataIngresso(alunoDto.getIngresso());
+        aluno.setMatricula(alunoDto.getMatricula());
         aluno.setUsuario(user);
+        return alunoRepository.save(aluno);
+    }
+
+    public Aluno update(AlunoChangeRequestDto alunoDto, Long id) {
+        Aluno aluno = findById(id);
+        aluno.setNome(alunoDto.getNome());
+        aluno.setEmail(alunoDto.getEmail());
+        aluno.setCpf(alunoDto.getCpf());
+        aluno.setDataIngresso(alunoDto.getIngresso());
+        aluno.setMatricula(alunoDto.getMatricula());
+        
         return alunoRepository.save(aluno);
     }
 
