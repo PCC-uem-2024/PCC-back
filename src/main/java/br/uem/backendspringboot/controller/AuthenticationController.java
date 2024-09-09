@@ -32,6 +32,7 @@ public class AuthenticationController {
                 .refreshToken(jwtRefreshToken)
                 .email(authenticatedUser.getEmail())
                 .role(authenticatedUser.getRoles().toString())
+                .tipoUser(authenticatedUser.getTipoUsuario())
                 .build());
     }
 

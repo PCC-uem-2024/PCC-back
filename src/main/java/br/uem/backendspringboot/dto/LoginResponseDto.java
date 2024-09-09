@@ -12,4 +12,5 @@ public class LoginResponseDto {
     private String refreshToken;
     private String email;
     private String role;
+    private char tipoUser;
 }
