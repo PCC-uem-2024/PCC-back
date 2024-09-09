@@ -1,14 +1,14 @@
 package br.uem.backendspringboot.controller;
 
-import br.uem.backendspringboot.dto.NewAlunoDto;
+import br.uem.backendspringboot.dto.request.AlunoChangeRequestDto;
+import br.uem.backendspringboot.dto.request.AlunoRequestDto;
 import br.uem.backendspringboot.model.Aluno;
 import br.uem.backendspringboot.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/alunos")
@@ -18,8 +18,28 @@ public class AlunoController {
     private AlunoService alunoService;
 
     @PostMapping
-    public ResponseEntity<Aluno> create(@RequestBody NewAlunoDto aluno) {
+    public ResponseEntity<Aluno> create(@RequestBody AlunoRequestDto aluno) {
         return ResponseEntity.ok(alunoService.save(aluno));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Aluno>> getAll() {
+        return ResponseEntity.ok(alunoService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Aluno> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(alunoService.findById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Aluno> update(@PathVariable Long id, @RequestBody AlunoChangeRequestDto aluno) {
+        return ResponseEntity.ok(alunoService.update(aluno, id));
+    }
+
+    @GetMapping("/consulta_email")
+    public ResponseEntity<Aluno> getByEmail(@RequestParam String email) {
+        return ResponseEntity.ok(alunoService.findByEmail(email));
     }
 
 }

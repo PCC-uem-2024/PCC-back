@@ -1,8 +1,9 @@
 package br.uem.backendspringboot.service;
 
-import br.uem.backendspringboot.dto.ChangePasswordDto;
+import br.uem.backendspringboot.dto.request.ChangePasswordRequestDto;
 import br.uem.backendspringboot.exception.BadRequestException;
 import br.uem.backendspringboot.exception.MismatchPasswordException;
+import br.uem.backendspringboot.exception.UserAlreadyExistException;
 import br.uem.backendspringboot.model.Usuario;
 import br.uem.backendspringboot.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,7 @@ public class UsuarioService {
         return oldPassword.equals(newPassword);
     }
 
-    public Boolean changePassword(ChangePasswordDto changePasswordDto) {
+    public Boolean changePassword(ChangePasswordRequestDto changePasswordDto) {
         Boolean matchPassword = matchPassword(changePasswordDto.getEmail(), changePasswordDto.getOldPassword());
         if (isNewPasswordEqualToOldPassword(changePasswordDto.getOldPassword(), changePasswordDto.getNewPassword())) {
             throw new MismatchPasswordException("Nova senha não pode ser igual a antiga.");
@@ -59,6 +60,8 @@ public class UsuarioService {
     }
 
     public Usuario create(Usuario usuario) {
+        if (usuarioExists(usuario.getEmail()))
+            throw new UserAlreadyExistException("Usuario já cadastrado.");
         return usuarioRepository.save(usuario);
     }
 }

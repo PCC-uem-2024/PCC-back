@@ -1,4 +1,4 @@
-package br.uem.backendspringboot.dto;
+package br.uem.backendspringboot.dto.request;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
-public class NewSecretariaDto {
+public class ProfessorRequestDto {
 
     private String nome;
     private String cpf;

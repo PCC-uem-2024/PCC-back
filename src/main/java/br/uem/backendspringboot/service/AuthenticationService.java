@@ -1,7 +1,7 @@
 package br.uem.backendspringboot.service;
 
-import br.uem.backendspringboot.dto.LoginDto;
-import br.uem.backendspringboot.dto.RefreshDto;
+import br.uem.backendspringboot.dto.request.LoginRequestDto;
+import br.uem.backendspringboot.dto.request.RefreshRequestDto;
 import br.uem.backendspringboot.exception.NotFoundException;
 import br.uem.backendspringboot.model.Usuario;
 import br.uem.backendspringboot.repository.UsuarioRepository;
@@ -27,7 +27,7 @@ public class AuthenticationService {
     @Autowired
     private final RefreshTokenService refreshTokenService;
 
-    public Usuario autenticar(LoginDto login) {
+    public Usuario autenticar(LoginRequestDto login) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         login.getEmail(),
@@ -39,7 +39,7 @@ public class AuthenticationService {
                 .orElseThrow();
     }
 
-    public Usuario refresh(RefreshDto refresh) {
+    public Usuario refresh(RefreshRequestDto refresh) {
         String token = refresh.getToken();
 
         if (refreshTokenService.findByToken(token).isEmpty()) {

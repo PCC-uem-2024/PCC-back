@@ -1,9 +1,12 @@
 package br.uem.backendspringboot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
@@ -24,14 +27,22 @@ public class Aluno {
     private String cpf;
     private String email;
     private LocalDate dataIngresso;
+    private String matricula;
 
     @OneToMany(mappedBy = "aluno")
+    @Fetch(FetchMode.JOIN)
     private Set<OrientadorInterno> orientadoresInterno = new HashSet<>();
 
     @OneToMany(mappedBy = "aluno")
+    @Fetch(FetchMode.JOIN)
     private Set<OrientadorExterno> orientadoresExterno = new HashSet<>();
+
+    @OneToMany(mappedBy = "aluno")
+    @Fetch(FetchMode.JOIN)
+    private Set<Defesa> defesas = new HashSet<>();
 
     @OneToOne
     @JoinColumn(name = "usuario_id")
+    @JsonIgnore
     private Usuario usuario;
 }

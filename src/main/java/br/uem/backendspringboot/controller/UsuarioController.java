@@ -1,7 +1,7 @@
 package br.uem.backendspringboot.controller;
 
-import br.uem.backendspringboot.dto.ChangePasswordDto;
-import br.uem.backendspringboot.dto.ResponseDto;
+import br.uem.backendspringboot.dto.request.ChangePasswordRequestDto;
+import br.uem.backendspringboot.dto.response.ResponseDto;
 import br.uem.backendspringboot.service.UsuarioService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
 
     @PostMapping("/changePassword")
-    public ResponseEntity<ResponseDto> changePassword(@RequestBody ChangePasswordDto changePasswordDto) {
+    public ResponseEntity<ResponseDto> changePassword(@RequestBody ChangePasswordRequestDto changePasswordDto) {
         Boolean changed = usuarioService.changePassword(changePasswordDto);
         if (changed) {
             return ResponseEntity.ok(ResponseDto.builder().message("Senha alterada com sucesso!").build());

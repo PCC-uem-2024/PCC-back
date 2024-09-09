@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -28,10 +30,15 @@ public class Defesa {
     private String linkMeet;
     private TipoDefesa tipo;
     @OneToMany(mappedBy = "defesa")
+    @Fetch(FetchMode.JOIN)
     private Set<Anexo> anexos = new HashSet<>();
     @OneToMany(mappedBy = "defesa")
+    @Fetch(FetchMode.JOIN)
     private Set<MembroInterno> membrosInternos = new HashSet<>();
     @OneToMany(mappedBy = "defesa")
+    @Fetch(FetchMode.JOIN)
     private Set<MembroExterno> membrosExternos = new HashSet<>();
-
+    @ManyToOne
+    @JoinColumn(name = "aluno_id", nullable = false)
+    private Aluno aluno;
 }

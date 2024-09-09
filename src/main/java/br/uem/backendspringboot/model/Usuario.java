@@ -1,6 +1,7 @@
 package br.uem.backendspringboot.model;
 
 import br.uem.backendspringboot.model.enums.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,9 +27,11 @@ public class Usuario implements UserDetails {
     private Long id;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String email;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String senha;
 
     /*
@@ -46,12 +49,14 @@ public class Usuario implements UserDetails {
     @ToString.Exclude
     private Set<Role> roles = new HashSet<>();
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toSet());
     }
 
     @Override
+    @JsonIgnore
     public String getPassword() {
         return senha;
     }
@@ -61,16 +66,19 @@ public class Usuario implements UserDetails {
         return email;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;

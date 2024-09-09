@@ -1,4 +1,4 @@
-package br.uem.backendspringboot.dto;
+package br.uem.backendspringboot.dto.request;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class LoginDto {
+public class LoginRequestDto {
     private String email;
     private String password;
 }
