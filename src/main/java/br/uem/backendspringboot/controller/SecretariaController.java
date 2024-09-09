@@ -19,6 +19,11 @@ public class SecretariaController {
         return ResponseEntity.ok(secretariaService.save(secretaria));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Secretaria> update(@PathVariable Long id, @RequestBody SecretariaChangeRequestDto secretaria) {
+        return ResponseEntity.ok(secretariaService.update(secretaria, id));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Secretaria> findById(@PathVariable Long id) {
         return ResponseEntity.ok(secretariaService.findById(id));

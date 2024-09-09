@@ -57,6 +57,17 @@ public class SecretariaService {
         return secretaria;
     }
 
+    public Secretaria update(SecretariaChangeRequestDto secretariaDto, Long id) {
+        Secretaria secretaria = findById(id);
+        secretaria.setNome(secretariaDto.getNome());
+        secretaria.setEmail(secretariaDto.getEmail());
+        secretaria.setCpf(secretariaDto.getCpf());
+        secretaria.setDataIngresso(secretariaDto.getIngresso());
+        secretaria.setMatricula(secretariaDto.getMatricula());
+
+        return secretariaRepository.save(secretaria);
+    }
+
     public Secretaria findById(Long idParam) {
         try {
             return secretariaRepository.findById(idParam).orElseThrow(() -> new NotFoundException("Secretarria não encontrado!"));

@@ -58,6 +58,17 @@ public class ProfessorService {
         return professor;
     }
 
+    public Professor update(ProfessorChangeRequestDto professorDto, Long id) {
+        Professor professor = findById(id);
+        professor.setNome(professorDto.getNome());
+        professor.setEmail(professorDto.getEmail());
+        professor.setCpf(professorDto.getCpf());
+        professor.setDataIngresso(professorDto.getIngresso());
+        professor.setMatricula(professorDto.getMatricula());
+
+        return professorRepository.save(professor);
+    }
+
     public Boolean professorExists(String email) {
         return professorRepository.findByEmail(email).isPresent();
     }

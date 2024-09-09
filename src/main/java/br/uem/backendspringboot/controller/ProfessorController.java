@@ -21,6 +21,11 @@ public class ProfessorController {
         return ResponseEntity.ok(professorService.save(professor));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Professor> update(@PathVariable Long id, @RequestBody ProfessorChangeRequestDto professor) {
+        return ResponseEntity.ok(professorService.update(professor, id));
+    }
+
     @GetMapping("/prefixo")
     public ResponseEntity<List<Professor>> findByNomeContains(@RequestParam String prefixo) {
         return ResponseEntity.ok(professorService.findByNomeContains(prefixo));
