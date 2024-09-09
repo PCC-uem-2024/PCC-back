@@ -2,6 +2,7 @@ package br.uem.backendspringboot.model;
 
 import br.uem.backendspringboot.model.enums.Modo;
 import br.uem.backendspringboot.model.enums.TipoDefesa;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,10 +28,13 @@ public class Defesa {
     private String localFisico;
     private String linkMeet;
     private TipoDefesa tipo;
+    @JsonIgnore
     @OneToMany(mappedBy = "defesa")
     private Set<Anexo> anexos = new HashSet<>();
+    @JsonIgnore
     @OneToMany(mappedBy = "defesa")
     private Set<MembroInterno> membrosInternos = new HashSet<>();
+    @JsonIgnore
     @OneToMany(mappedBy = "defesa")
     private Set<MembroExterno> membrosExternos = new HashSet<>();
 

@@ -1,6 +1,7 @@
 package br.uem.backendspringboot.model;
 
 import br.uem.backendspringboot.model.enums.TipoAnexo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class Anexo {
     private TipoAnexo tipo;
     private Boolean externo;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "defesa_id", nullable = false)
     private Defesa defesa;

@@ -1,6 +1,7 @@
 package br.uem.backendspringboot.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,9 +24,11 @@ public class Externo {
     private String instituicao;
     private String cpf;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "professor")
     private Set<MembroExterno> defesaInterno = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "professor")
     private Set<OrientadorExterno> orientacoes = new HashSet<>();
 }

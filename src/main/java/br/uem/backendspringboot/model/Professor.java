@@ -1,7 +1,10 @@
 package br.uem.backendspringboot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
@@ -24,12 +27,15 @@ public class Professor {
     private String matricula;
     private LocalDate dataIngresso;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "professor")
     private Set<MembroInterno> defesaInterno = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "professor")
     private Set<OrientadorInterno> orientacoes = new HashSet<>();
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;

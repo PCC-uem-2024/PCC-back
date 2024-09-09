@@ -1,6 +1,7 @@
 package br.uem.backendspringboot.model;
 
 import br.uem.backendspringboot.model.enums.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -29,6 +30,7 @@ public class Usuario implements UserDetails {
     private String email;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String senha;
 
     /*
@@ -52,6 +54,7 @@ public class Usuario implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public String getPassword() {
         return senha;
     }

@@ -1,5 +1,6 @@
 package br.uem.backendspringboot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,12 +26,15 @@ public class Aluno {
     private String email;
     private LocalDate dataIngresso;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "aluno")
     private Set<OrientadorInterno> orientadoresInterno = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "aluno")
     private Set<OrientadorExterno> orientadoresExterno = new HashSet<>();
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
