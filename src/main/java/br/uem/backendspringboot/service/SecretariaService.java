@@ -1,5 +1,6 @@
 package br.uem.backendspringboot.service;
 
+import br.uem.backendspringboot.dto.request.SecretariaChangeRequestDto;
 import br.uem.backendspringboot.dto.request.SecretariaRequestDto;
 import br.uem.backendspringboot.exception.NotFoundException;
 import br.uem.backendspringboot.model.Secretaria;

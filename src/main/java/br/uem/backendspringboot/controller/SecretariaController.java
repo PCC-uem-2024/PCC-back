@@ -1,5 +1,6 @@
 package br.uem.backendspringboot.controller;
 
+import br.uem.backendspringboot.dto.request.SecretariaChangeRequestDto;
 import br.uem.backendspringboot.dto.request.SecretariaRequestDto;
 import br.uem.backendspringboot.model.Secretaria;
 import br.uem.backendspringboot.service.SecretariaService;

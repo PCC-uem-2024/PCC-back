@@ -1,5 +1,6 @@
 package br.uem.backendspringboot.controller;
 
+import br.uem.backendspringboot.dto.request.ProfessorChangeRequestDto;
 import br.uem.backendspringboot.dto.request.ProfessorRequestDto;
 import br.uem.backendspringboot.model.Professor;
 import br.uem.backendspringboot.service.ProfessorService;
