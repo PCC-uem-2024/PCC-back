@@ -17,9 +17,6 @@ public class ProfessorController {
     @Autowired
     private ProfessorService professorService;
 
-    @Autowired
-    private UsuarioService usuarioService;
-
     @PostMapping
     public ResponseEntity<Professor> create(@RequestBody NewProfessorDto professor) {
         return ResponseEntity.ok(professorService.save(professor));
