@@ -5,6 +5,7 @@ import br.uem.backendspringboot.dto.ResponseDto;
 import br.uem.backendspringboot.dto.response.ProfessorDto;
 import br.uem.backendspringboot.model.Professor;
 import br.uem.backendspringboot.service.ProfessorService;
+import br.uem.backendspringboot.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +20,12 @@ public class ProfessorController {
     @Autowired
     private ProfessorService professorService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     @PostMapping("/cadastro")
     public ResponseEntity<ResponseDto> create(@RequestBody NewProfessorDto professor) {
-        Boolean professorExists = professorService.professorExists(professor.getEmail());
+        Boolean professorExists = usuarioService.usuarioExists(professor.getEmail());
 
         if(professorExists){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ResponseDto.builder()

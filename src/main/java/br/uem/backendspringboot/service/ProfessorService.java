@@ -41,7 +41,6 @@ public class ProfessorService {
     @Transactional(rollbackFor = Exception.class)
     public void save(NewProfessorDto professorDto) {
         try {
-
             Usuario user = new Usuario();
             user.setTipoUsuario('P');
             user.setSenha(passwordEncoder.encode(professorDto.getPassword()));
@@ -63,7 +62,7 @@ public class ProfessorService {
             System.out.println("Erro de tipagem: " + tp.getMessage());
         } catch (Exception e){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    "Erro ao salvar professor: " + e.getMessage(), e);
+                    "Erro ao criar usuario: " + e.getMessage(), e);
         }
     }
 
@@ -149,7 +148,4 @@ public class ProfessorService {
                     "Erro ao buscar professor: " + e.getMessage(), e);
         }
     }
-
-
-
 }

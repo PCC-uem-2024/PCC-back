@@ -54,6 +54,10 @@ public class UsuarioService {
         }
     }
 
+    public Boolean usuarioExists(String email){
+        return usuarioRepository.findByEmail(email).isPresent();
+    }
+
     public Usuario create(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
