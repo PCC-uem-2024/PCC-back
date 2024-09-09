@@ -1,7 +1,7 @@
 package br.uem.backendspringboot.service;
 
-import br.uem.backendspringboot.dto.LoginDto;
-import br.uem.backendspringboot.dto.RefreshDto;
+import br.uem.backendspringboot.dto.request.LoginDto;
+import br.uem.backendspringboot.dto.request.RefreshDto;
 import br.uem.backendspringboot.exception.NotFoundException;
 import br.uem.backendspringboot.model.Usuario;
 import br.uem.backendspringboot.repository.UsuarioRepository;

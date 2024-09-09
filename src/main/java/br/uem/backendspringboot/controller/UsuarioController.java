@@ -1,7 +1,7 @@
 package br.uem.backendspringboot.controller;
 
-import br.uem.backendspringboot.dto.ChangePasswordDto;
-import br.uem.backendspringboot.dto.ResponseDto;
+import br.uem.backendspringboot.dto.response.ChangePasswordDto;
+import br.uem.backendspringboot.dto.response.ResponseDto;
 import br.uem.backendspringboot.service.UsuarioService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;

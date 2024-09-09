@@ -1,8 +1,8 @@
 package br.uem.backendspringboot.controller;
 
-import br.uem.backendspringboot.dto.LoginDto;
-import br.uem.backendspringboot.dto.LoginResponseDto;
-import br.uem.backendspringboot.dto.RefreshDto;
+import br.uem.backendspringboot.dto.request.LoginDto;
+import br.uem.backendspringboot.dto.response.LoginResponseDto;
+import br.uem.backendspringboot.dto.request.RefreshDto;
 import br.uem.backendspringboot.model.Usuario;
 import br.uem.backendspringboot.service.AuthenticationService;
 import br.uem.backendspringboot.service.JwtService;

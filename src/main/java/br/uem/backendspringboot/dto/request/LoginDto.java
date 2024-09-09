@@ -1,4 +1,4 @@
-package br.uem.backendspringboot.dto;
+package br.uem.backendspringboot.dto.request;
 
 import lombok.Builder;
 import lombok.Getter;

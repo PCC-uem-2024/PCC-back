@@ -15,26 +15,6 @@ import java.util.Optional;
 public interface ProfessorRepository extends JpaRepository<Professor, Long> {
 
     Optional<Professor> findByEmail(String email);
-
-    @Query(value = "SELECT p.nome, p.email, p.cpf, p.matricula, p.data_ingresso, p.id " +
-            "FROM Professor p LEFT JOIN Usuario u " +
-            "ON p.email = u.email " +
-            "WHERE p.email LIKE :email",
-            nativeQuery = true)
-    Object findProfessorByEmail(@Param("email") String email);
-
-    @Query(value = "SELECT p.nome, p.email, p.cpf, p.matricula, p.data_ingresso, p.id " +
-            "FROM Professor p LEFT JOIN Usuario u " +
-            "ON p.email = u.email " +
-            "WHERE p.id = :id",
-            nativeQuery = true)
-    Object findProfessorById(@Param("id") Long id);
-
-    @Query(value = "SELECT p.nome, p.email, p.cpf, p.matricula, p.data_ingresso, p.id " +
-            "FROM Professor p LEFT JOIN Usuario u " +
-            "ON p.email = u.email " +
-            "WHERE UPPER(p.nome) LIKE :prefixo%",
-            nativeQuery = true)
-    List<Object[]> findByNomeStartsWith(@Param("prefixo") String prefixo);
+    List<Professor> findByNomeContainsIgnoreCase(String nome);
 
 }

@@ -1,6 +1,6 @@
 package br.uem.backendspringboot.controller;
 
-import br.uem.backendspringboot.dto.NewAlunoDto;
+import br.uem.backendspringboot.dto.request.NewAlunoDto;
 import br.uem.backendspringboot.model.Aluno;
 import br.uem.backendspringboot.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;

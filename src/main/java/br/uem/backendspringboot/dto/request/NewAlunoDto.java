@@ -1,4 +1,4 @@
-package br.uem.backendspringboot.dto;
+package br.uem.backendspringboot.dto.request;
 
 import br.uem.backendspringboot.model.enums.TipoCurso;
 import jakarta.persistence.EnumType;
@@ -12,13 +12,16 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
-public class NewProfessorDto {
+public class NewAlunoDto {
 
     private String nome;
     private String cpf;
     private String email;
     private String matricula;
-    private LocalDate dataIngresso;
+    private LocalDate ingresso;
+    @Enumerated(EnumType.STRING)
+    private TipoCurso tipoCurso;
     private String password;
+    private String confirmPassword;
 
 }

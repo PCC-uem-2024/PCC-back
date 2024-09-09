@@ -1,16 +1,16 @@
 package br.uem.backendspringboot.exception.handle;
 
-import br.uem.backendspringboot.dto.ErrorResponseDto;
+import br.uem.backendspringboot.dto.response.ErrorResponseDto;
 import br.uem.backendspringboot.exception.BadRequestException;
 import br.uem.backendspringboot.exception.MismatchPasswordException;
 import br.uem.backendspringboot.exception.NotFoundException;
+import br.uem.backendspringboot.exception.UserAlreadyExistException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -88,6 +88,15 @@ public class ResourceHandle {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponseDto> httpMessageNotReadableException(HttpMessageNotReadableException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorResponseDto.builder()
+                .message(e.getMessage())
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .statusCode(HttpStatus.BAD_REQUEST.value())
+                .build());
+    }
+
+    @ExceptionHandler(UserAlreadyExistException.class)
+    public ResponseEntity<ErrorResponseDto> userAlreadyExistException(UserAlreadyExistException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorResponseDto.builder()
                 .message(e.getMessage())
                 .httpStatus(HttpStatus.BAD_REQUEST)

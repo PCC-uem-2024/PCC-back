@@ -1,6 +1,6 @@
 package br.uem.backendspringboot.service;
 
-import br.uem.backendspringboot.dto.NewAlunoDto;
+import br.uem.backendspringboot.dto.request.NewAlunoDto;
 import br.uem.backendspringboot.exception.MismatchPasswordException;
 import br.uem.backendspringboot.exception.NotFoundException;
 import br.uem.backendspringboot.model.Aluno;

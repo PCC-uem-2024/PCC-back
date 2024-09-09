@@ -12,8 +12,7 @@ public enum Role {
     ROLE_PROFESSOR("Professor"),
     ROLE_ALUNO("Aluno"),
     ROLE_MESTRADO("Mestrado"),
-    ROLE_DOUTORADO("Doutorado"),
-    ROLE_ORIENTADOR("Orientador");
+    ROLE_DOUTORADO("Doutorado");
 
     private final String role;
 }
