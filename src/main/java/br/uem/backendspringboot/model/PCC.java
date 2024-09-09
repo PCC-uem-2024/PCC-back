@@ -1,11 +1,12 @@
 package br.uem.backendspringboot.model;
 
 import br.uem.backendspringboot.model.enums.TipoCurso;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -26,7 +27,7 @@ public class PCC {
     @Enumerated(EnumType.ORDINAL)
     private TipoCurso tipoCurso;
 
-    @JsonIgnore
     @OneToMany
+    @Fetch(FetchMode.JOIN)
     private Set<Professor> professores = new HashSet<>();
 }

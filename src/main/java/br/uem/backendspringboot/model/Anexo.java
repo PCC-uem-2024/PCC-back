@@ -1,11 +1,12 @@
 package br.uem.backendspringboot.model;
 
 import br.uem.backendspringboot.model.enums.TipoAnexo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Getter
 @Setter
@@ -22,9 +23,9 @@ public class Anexo {
     private TipoAnexo tipo;
     private Boolean externo;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "defesa_id", nullable = false)
+    @Fetch(FetchMode.JOIN)
     private Defesa defesa;
 
 }
