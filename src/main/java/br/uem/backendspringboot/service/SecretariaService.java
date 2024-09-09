@@ -1,6 +1,6 @@
 package br.uem.backendspringboot.service;
 
-import br.uem.backendspringboot.dto.request.NewSecretariaDto;
+import br.uem.backendspringboot.dto.request.SecretariaRequestDto;
 import br.uem.backendspringboot.exception.NotFoundException;
 import br.uem.backendspringboot.model.Secretaria;
 import br.uem.backendspringboot.model.Usuario;
@@ -32,7 +32,7 @@ public class SecretariaService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public Secretaria save(NewSecretariaDto secretariaDto) {
+    public Secretaria save(SecretariaRequestDto secretariaDto) {
         Usuario user = new Usuario();
         user.setTipoUsuario('S');
         user.setSenha(passwordEncoder.encode(secretariaDto.getPassword()));

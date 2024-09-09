@@ -1,8 +1,8 @@
 package br.uem.backendspringboot.controller;
 
-import br.uem.backendspringboot.dto.request.LoginDto;
+import br.uem.backendspringboot.dto.request.LoginRequestDto;
 import br.uem.backendspringboot.dto.response.LoginResponseDto;
-import br.uem.backendspringboot.dto.request.RefreshDto;
+import br.uem.backendspringboot.dto.request.RefreshRequestDto;
 import br.uem.backendspringboot.model.Usuario;
 import br.uem.backendspringboot.service.AuthenticationService;
 import br.uem.backendspringboot.service.JwtService;
@@ -23,7 +23,7 @@ public class AuthenticationController {
     private final RefreshTokenService refreshTokenService;
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDto> authenticate(@RequestBody LoginDto loginDto) {
+    public ResponseEntity<LoginResponseDto> authenticate(@RequestBody LoginRequestDto loginDto) {
         Usuario authenticatedUser = authenticationService.autenticar(loginDto);
         String jwtToken = jwtService.generateToken(authenticatedUser);
         String jwtRefreshToken = refreshTokenService.createRefreshToken(authenticatedUser).getToken();
@@ -36,7 +36,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity<LoginResponseDto> refresh(@RequestBody RefreshDto refreshDto) {
+    public ResponseEntity<LoginResponseDto> refresh(@RequestBody RefreshRequestDto refreshDto) {
         Usuario authenticatedUser = authenticationService.refresh(refreshDto);
         refreshTokenService.deleteByToken(refreshDto.getToken());
         String jwtToken = jwtService.generateToken(authenticatedUser);

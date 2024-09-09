@@ -1,6 +1,6 @@
 package br.uem.backendspringboot.service;
 
-import br.uem.backendspringboot.dto.response.ChangePasswordDto;
+import br.uem.backendspringboot.dto.request.ChangePasswordRequestDto;
 import br.uem.backendspringboot.exception.BadRequestException;
 import br.uem.backendspringboot.exception.MismatchPasswordException;
 import br.uem.backendspringboot.exception.UserAlreadyExistException;
@@ -34,7 +34,7 @@ public class UsuarioService {
         return oldPassword.equals(newPassword);
     }
 
-    public Boolean changePassword(ChangePasswordDto changePasswordDto) {
+    public Boolean changePassword(ChangePasswordRequestDto changePasswordDto) {
         Boolean matchPassword = matchPassword(changePasswordDto.getEmail(), changePasswordDto.getOldPassword());
         if (isNewPasswordEqualToOldPassword(changePasswordDto.getOldPassword(), changePasswordDto.getNewPassword())) {
             throw new MismatchPasswordException("Nova senha não pode ser igual a antiga.");

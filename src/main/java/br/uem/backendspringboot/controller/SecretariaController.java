@@ -1,8 +1,6 @@
 package br.uem.backendspringboot.controller;
 
-import br.uem.backendspringboot.dto.request.NewSecretariaDto;
-import br.uem.backendspringboot.dto.response.ResponseDto;
-import br.uem.backendspringboot.dto.response.SecretariaDto;
+import br.uem.backendspringboot.dto.request.SecretariaRequestDto;
 import br.uem.backendspringboot.model.Secretaria;
 import br.uem.backendspringboot.service.SecretariaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,7 @@ public class SecretariaController {
     private SecretariaService secretariaService;
 
     @PostMapping
-    public ResponseEntity<Secretaria> create(@RequestBody NewSecretariaDto secretaria) {
+    public ResponseEntity<Secretaria> create(@RequestBody SecretariaRequestDto secretaria) {
         return ResponseEntity.ok(secretariaService.save(secretaria));
     }
 

@@ -1,4 +1,4 @@
-package br.uem.backendspringboot.dto.response;
+package br.uem.backendspringboot.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ChangePasswordDto {
+public class ChangePasswordRequestDto {
     private String oldPassword;
     private String newPassword;
     private String confirNewPassword;

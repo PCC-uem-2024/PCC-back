@@ -1,9 +1,8 @@
 package br.uem.backendspringboot.controller;
 
-import br.uem.backendspringboot.dto.request.NewProfessorDto;
+import br.uem.backendspringboot.dto.request.ProfessorRequestDto;
 import br.uem.backendspringboot.model.Professor;
 import br.uem.backendspringboot.service.ProfessorService;
-import br.uem.backendspringboot.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,7 @@ public class ProfessorController {
     private ProfessorService professorService;
 
     @PostMapping
-    public ResponseEntity<Professor> create(@RequestBody NewProfessorDto professor) {
+    public ResponseEntity<Professor> create(@RequestBody ProfessorRequestDto professor) {
         return ResponseEntity.ok(professorService.save(professor));
     }
 

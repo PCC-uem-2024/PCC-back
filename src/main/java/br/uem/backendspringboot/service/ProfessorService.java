@@ -1,6 +1,6 @@
 package br.uem.backendspringboot.service;
 
-import br.uem.backendspringboot.dto.request.NewProfessorDto;
+import br.uem.backendspringboot.dto.request.ProfessorRequestDto;
 import br.uem.backendspringboot.exception.NotFoundException;
 import br.uem.backendspringboot.model.Professor;
 import br.uem.backendspringboot.model.Usuario;
@@ -30,7 +30,7 @@ public class ProfessorService {
     private PasswordEncoder passwordEncoder;
 
     @Transactional(rollbackFor = Exception.class)
-    public Professor save(NewProfessorDto professorDto) {
+    public Professor save(ProfessorRequestDto professorDto) {
         Usuario user = new Usuario();
         user.setTipoUsuario('P');
         user.setSenha(passwordEncoder.encode(professorDto.getPassword()));

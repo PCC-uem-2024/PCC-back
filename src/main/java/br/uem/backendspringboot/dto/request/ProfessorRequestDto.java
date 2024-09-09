@@ -4,10 +4,18 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @Builder
-public class LoginDto {
+public class ProfessorRequestDto {
+
+    private String nome;
+    private String cpf;
     private String email;
+    private String matricula;
+    private LocalDate dataIngresso;
     private String password;
+
 }
