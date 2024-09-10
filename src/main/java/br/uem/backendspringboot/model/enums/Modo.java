@@ -11,4 +11,8 @@ public enum Modo {
     HIBRIDO("Hibrido");
 
     private String modo;
+
+    public boolean isRemoto(){
+        return REMOTO.equals(this);
+    }
 }

@@ -48,7 +48,7 @@ public class ProfessorService {
         professor.setUsuario(user);
 
         try {
-            professor = professorRepository.save(professor);
+            professor = save(professor);
         } catch (TypeNotPresentException tp) {
             System.out.println("Erro de tipagem: " + tp.getMessage());
         } catch (Exception e) {
@@ -57,6 +57,11 @@ public class ProfessorService {
         }
 
         return professor;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public Professor save( Professor professor) {
+        return professorRepository.save(professor);
     }
 
     public Professor update(ProfessorChangeRequestDto professorDto, Long id) {

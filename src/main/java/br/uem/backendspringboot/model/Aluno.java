@@ -2,47 +2,38 @@ package br.uem.backendspringboot.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-@Getter
-@Setter
-@NoArgsConstructor
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
 public class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
-    @CPF
-    private String cpf;
     private String email;
-    private LocalDate dataIngresso;
+    private String cpf;
     private String matricula;
-
-    @OneToMany(mappedBy = "aluno")
-    @Fetch(FetchMode.JOIN)
-    private Set<OrientadorInterno> orientadoresInterno = new HashSet<>();
-
-    @OneToMany(mappedBy = "aluno")
-    @Fetch(FetchMode.JOIN)
-    private Set<OrientadorExterno> orientadoresExterno = new HashSet<>();
-
-    @OneToMany(mappedBy = "aluno")
-    @Fetch(FetchMode.JOIN)
-    private Set<Defesa> defesas = new HashSet<>();
+    private LocalDate dataIngresso;
 
     @OneToOne
     @JoinColumn(name = "usuario_id")
     @JsonIgnore
     private Usuario usuario;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Solicitacao> solicitacoes = new ArrayList<>();
 }

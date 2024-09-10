@@ -1,13 +1,12 @@
 package br.uem.backendspringboot.model;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +14,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Externo {
+public class ProfessorBancada {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,13 +22,11 @@ public class Externo {
     private String nome;
     private String email;
     private String instituicao;
-    private String cpf;
 
-    @OneToMany(mappedBy = "professor")
-    @Fetch(FetchMode.JOIN)
-    private Set<MembroExterno> defesaInterno = new HashSet<>();
+    @Column(columnDefinition = "boolean default false")
+    private boolean externo;
 
-    @OneToMany(mappedBy = "professor")
-    @Fetch(FetchMode.JOIN)
-    private Set<OrientadorExterno> orientacoes = new HashSet<>();
+    @JsonIgnore
+    @ManyToMany(mappedBy = "membros")
+    private Set<Solicitacao> solicitacoes = new HashSet<>();
 }
