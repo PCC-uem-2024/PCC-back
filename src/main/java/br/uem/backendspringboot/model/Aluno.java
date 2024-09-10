@@ -33,6 +33,7 @@ public class Aluno {
     @JsonIgnore
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Solicitacao> solicitacoes = new ArrayList<>();
 }

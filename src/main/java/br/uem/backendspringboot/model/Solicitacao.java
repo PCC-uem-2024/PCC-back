@@ -45,7 +45,7 @@ public class Solicitacao {
     )
     private Set<ProfessorBancada> membros = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "aluno_id", nullable = false)
     private Aluno aluno;
 }

@@ -41,16 +41,7 @@ public class SolicitacaoService {
         solicitacao.setAluno(aluno);
 
         Set<ProfessorBancada> professors = new HashSet<>();
-        for(ProfessorBancada professor : solicitacao.getMembros()){
-
-            if(professor.getId()==null){
-                if(!professorBancadaService.professorExists(professor.getEmail())){
-                    professor = professorBancadaService.save(professor);
-                }
-            }
-
-            professors.add(professor);
-        }
+        professors.addAll(solicitacao.getMembros());
 
         solicitacao.setMembros(professors);
 

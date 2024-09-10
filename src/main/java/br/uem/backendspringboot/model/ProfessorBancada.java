@@ -1,5 +1,6 @@
 package br.uem.backendspringboot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class ProfessorBancada {
     @Column(columnDefinition = "boolean default false")
     private boolean externo;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "membros")
     private Set<Solicitacao> solicitacoes = new HashSet<>();
 }
