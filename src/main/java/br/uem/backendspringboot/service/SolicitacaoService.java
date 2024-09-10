@@ -1,5 +1,6 @@
 package br.uem.backendspringboot.service;
 
+import br.uem.backendspringboot.exception.NotFoundException;
 import br.uem.backendspringboot.model.Aluno;
 import br.uem.backendspringboot.model.Professor;
 import br.uem.backendspringboot.model.ProfessorBancada;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -48,4 +50,15 @@ public class SolicitacaoService {
         return solicitacaoRepository.save(solicitacao);
     }
 
+    public List<Solicitacao> findAll() {
+        return solicitacaoRepository.findAll();
+    }
+
+    public Solicitacao findById(Integer id) {
+        return solicitacaoRepository.findById(id).orElseThrow(() -> new NotFoundException("Solicitacão não encontrada!"));
+    }
+
+    public Solicitacao findByAluno_Id(Long id) {
+        return solicitacaoRepository.findByAluno_Id(id).orElseThrow(() -> new NotFoundException("Solicitacões não encontradas!"));
+    }
 }
