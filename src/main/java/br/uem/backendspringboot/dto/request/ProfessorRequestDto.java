@@ -17,5 +17,6 @@ public class ProfessorRequestDto {
     private String matricula;
     private LocalDate dataIngresso;
     private String password;
+    private String instituicao;
 
 }
